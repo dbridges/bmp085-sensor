@@ -1,6 +1,6 @@
-# BMP085 library for Node.js and Raspberry Pi
+# BMP085.js 
 
-Access a BMP085 temperature & pressure sensor from your Raspberry Pi.
+Access a BMP085 temperature & pressure sensor from your Raspberry Pi using Node.js.
 
 ### Install
 
