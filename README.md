@@ -5,13 +5,13 @@ Access a [BMP085](http://www.bosch-sensortec.com/en/homepage/products_3/environm
 ### Install
 
 ```
-$ npm install bmp085
+$ npm install bmp085-sensor
 ```
 
 ### Usage
 
 ```javascript
-var bmp085 = require('bmp085');
+var bmp085 = require('bmp085-sensor');
 
 var sensor = bmp085({address: 0x77,
                      mode: 3});
