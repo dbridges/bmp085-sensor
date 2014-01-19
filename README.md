@@ -1,6 +1,6 @@
 # BMP085.js 
 
-Access a BMP085 temperature & pressure sensor from your Raspberry Pi using Node.js.
+Access a [BMP085](http://www.bosch-sensortec.com/en/homepage/products_3/environmental_sensors_1/bmp085_1/bmp085) temperature & barometric pressure sensor from your Raspberry Pi using Node.js.
 
 ### Install
 
