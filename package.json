@@ -1,0 +1,29 @@
+{
+  "name": "bmp085",
+  "version": "0.0.0",
+  "description": "A module to interface a BMP085 temperature and pressure sensor to the raspberry pi.",
+  "main": "index.js",
+  "dependencies": {
+    "async": "~0.2.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dbridges/bmp085.git"
+  },
+  "keywords": [
+    "bmp085",
+    "raspberry",
+    "pi",
+    "i2c"
+  ],
+  "author": "Daniel Bridges",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dbridges/bmp085/issues"
+  },
+  "homepage": "https://github.com/dbridges/bmp085"
+}
