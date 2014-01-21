@@ -136,7 +136,7 @@ module.exports = function BMP085(options) {
       p = p + ((x1 + x2 + 3791) >> 4);
 
       call(err, {pressure: p / 3386.0,
-                 temp: corrected_temp});
+                 temperature: corrected_temp});
     });
   };
 
