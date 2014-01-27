@@ -79,6 +79,8 @@ module.exports = function BMP085(options) {
         });
       }
     ], function (err, res) {
+      if (err)
+        call(err, {});
       var uncal_pressure = res[0];
       var uncal_temp = res[1];
 
