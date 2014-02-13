@@ -21,3 +21,18 @@ sensor.read(function (err, data) {
 });
 
 ```
+
+You can also specify metric units:
+
+```
+var bmp085 = require('bmp085-sensor');
+
+var sensor = bmp085({address: 0x77,
+                     mode: 3,
+                     units: 'metric'});
+
+sensor.read(function (err, data) {
+  // data is { pressure: 101435.97, temp: 20.5 }
+});
+
+```

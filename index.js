@@ -99,7 +99,9 @@ module.exports = function BMP085(options) {
       x2 = (cal.mc << 11) / (x1 + cal.md);
       b5 = x1 + x2;
 
-      var corrected_temp = ((90 * ((b5 + 8) >> 4) / 50) + 320) / 10.0;
+      var corrected_temp = ((b5 + 8) >> 4) / 10.0;
+      if (options.units !== 'metric')
+        corrected_temp = (9 * corrected_temp / 5) + 32;
 
       // Get calibrated pressure
       x1 = 0;
@@ -137,7 +139,10 @@ module.exports = function BMP085(options) {
       x2 = ((-7357 * p) >> 16);
       p = p + ((x1 + x2 + 3791) >> 4);
 
-      call(err, {pressure: p / 3386.0,
+      if (options.units !== 'metric')
+        p /= 3386.0;
+
+      call(err, {pressure: p,
                  temperature: corrected_temp});
     });
   };
