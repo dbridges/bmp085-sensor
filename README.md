@@ -10,6 +10,7 @@ $ npm install bmp085-sensor
 
 ### Usage
 
+With no units specified, returns inHg and degree F.
 ```javascript
 var bmp085 = require('bmp085-sensor');
 
@@ -22,9 +23,9 @@ sensor.read(function (err, data) {
 
 ```
 
-You can also specify metric units:
+You can also specify metric units, returning Pa and degree C:
 
-```
+```javascript
 var bmp085 = require('bmp085-sensor');
 
 var sensor = bmp085({address: 0x77,
