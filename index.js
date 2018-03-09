@@ -30,10 +30,11 @@ module.exports = function BMP085(options) {
     return (high << 8) + low;
   }
 
-  sensor.calibrate = function () {
+  sensor.calibrate = function (callback) {
+    if (!callback) throw "Invalid param";
     wire.readBytes(0xAA, 22, function (err, data) {
       if (err) {
-        console.error('Error calibrating.');
+        callback(err, data);
         return;
       }
       cal = {
@@ -49,6 +50,7 @@ module.exports = function BMP085(options) {
         mc:  toS16(data[18], data[19]),
         md:  toS16(data[20], data[21])
       };
+      callback (err, cal);
     });
   };
 
@@ -148,8 +150,6 @@ module.exports = function BMP085(options) {
                  temperature: corrected_temp});
     });
   };
-
-  sensor.calibrate();
 
   return sensor;
 };
