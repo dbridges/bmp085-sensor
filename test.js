@@ -5,5 +5,8 @@ var sensor = BMP085({address: 0x77,
                      units: 'metric'});
 
 sensor.read(function (err, data) {
+  if(err || !data) {
+     throw err;
+  }
   console.log(data);
 });

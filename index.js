@@ -57,9 +57,10 @@ module.exports = function BMP085(options) {
       function (callback) {
         // Write select pressure command to control register
         wire.writeBytes(BMP085_CONTROL_REGISTER,
-                        [BMP085_SELECT_PRESSURE + (options.mode << 6)]);
-        setTimeout(function () { 
-          callback(null); }, 28);
+                        [BMP085_SELECT_PRESSURE + (options.mode << 6)],
+                        function(err, data) {
+                           setTimeout(function () { callback(err); }, 28);
+                        });
       },
       function (callback) {
         // Read uncalibrated pressure.
@@ -69,9 +70,10 @@ module.exports = function BMP085(options) {
         });
       },
       function (pressure, callback) {
-        wire.writeBytes(BMP085_CONTROL_REGISTER, [BMP085_SELECT_TEMP]);
-        setTimeout(function () { 
-          callback(null, pressure); }, 8);
+        wire.writeBytes(BMP085_CONTROL_REGISTER, [BMP085_SELECT_TEMP],
+                        function(err, data) {
+                          setTimeout(function () { callback(err, pressure); }, 8);
+                        });
       },
       function (pressure, callback) {
         wire.readBytes(BMP085_CONVERSION_RESULT, 2, function (err, data) {
