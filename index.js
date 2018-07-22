@@ -3,6 +3,12 @@ var i2c = require('i2c');
 
 module.exports = function BMP085(options) {
   var sensor = function() {};
+  options = options || {
+    address: 0x77,
+    mode: 0,
+    units: 'metric'
+  };
+  options.address = options.address || 0x77;
   var wire = new i2c(options.address);
   var cal = {};
 
@@ -30,10 +36,11 @@ module.exports = function BMP085(options) {
     return (high << 8) + low;
   }
 
-  sensor.calibrate = function () {
+  sensor.calibrate = function (callback) {
+    if (!callback) throw "Invalid param";
     wire.readBytes(0xAA, 22, function (err, data) {
       if (err) {
-        console.error('Error calibrating.');
+        callback(err, data);
         return;
       }
       cal = {
@@ -49,6 +56,7 @@ module.exports = function BMP085(options) {
         mc:  toS16(data[18], data[19]),
         md:  toS16(data[20], data[21])
       };
+      callback (err, cal);
     });
   };
 
@@ -57,9 +65,10 @@ module.exports = function BMP085(options) {
       function (callback) {
         // Write select pressure command to control register
         wire.writeBytes(BMP085_CONTROL_REGISTER,
-                        [BMP085_SELECT_PRESSURE + (options.mode << 6)]);
-        setTimeout(function () { 
-          callback(null); }, 28);
+                        [BMP085_SELECT_PRESSURE + (options.mode << 6)],
+                        function(err, data) {
+                           setTimeout(function () { callback(err); }, 28);
+                        });
       },
       function (callback) {
         // Read uncalibrated pressure.
@@ -69,9 +78,10 @@ module.exports = function BMP085(options) {
         });
       },
       function (pressure, callback) {
-        wire.writeBytes(BMP085_CONTROL_REGISTER, [BMP085_SELECT_TEMP]);
-        setTimeout(function () { 
-          callback(null, pressure); }, 8);
+        wire.writeBytes(BMP085_CONTROL_REGISTER, [BMP085_SELECT_TEMP],
+                        function(err, data) {
+                          setTimeout(function () { callback(err, pressure); }, 8);
+                        });
       },
       function (pressure, callback) {
         wire.readBytes(BMP085_CONVERSION_RESULT, 2, function (err, data) {
@@ -146,8 +156,6 @@ module.exports = function BMP085(options) {
                  temperature: corrected_temp});
     });
   };
-
-  sensor.calibrate();
 
   return sensor;
 };
