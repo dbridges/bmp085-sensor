@@ -1,6 +1,6 @@
 {
   "name": "bmp085-sensor",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A module to interface a BMP085 temperature and pressure sensor to the raspberry pi.",
   "main": "bmp085-sensor.js",
   "dependencies": {
