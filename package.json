@@ -2,14 +2,14 @@
   "name": "bmp085-sensor",
   "version": "0.0.4",
   "description": "A module to interface a BMP085 temperature and pressure sensor to the raspberry pi.",
-  "main": "index.js",
+  "main": "bmp085-sensor.js",
   "dependencies": {
     "i2c" : "*",
     "async": "~0.2.9"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node test"
+    "test": "NODE_PATH=. node test"
   },
   "repository": {
     "type": "git",
