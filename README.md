@@ -2,6 +2,9 @@
 
 Access a [BMP085](http://www.bosch-sensortec.com/en/homepage/products_3/environmental_sensors_1/bmp085_1/bmp085) temperature & barometric pressure sensor from your Raspberry Pi using Node.js.
 
+
+[![NPM](https://nodei.co/npm/bmp085-sensor.png)](https://npmjs.org/package/bmp085-sensor)
+
 ### Install
 
 ```
@@ -54,3 +57,9 @@ sensor.calibrate(function (err, data) {
   });                                                                                                                                                                                                                                                                          
 });
 ```
+
+### Resources
+
+* https://www.npmjs.com/package/bmp085-sensor
+* https://github.com/dbridges/bmp085-sensor
+* https://www.openhub.net/p/bmp085-sensor

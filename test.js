@@ -1,4 +1,4 @@
-var BMP085 = require('./index.js');
+var BMP085 = require('bmp085-sensor');
 
 var sensor = BMP085();
 
